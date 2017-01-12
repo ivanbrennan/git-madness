@@ -7,12 +7,20 @@ heading() {
     echo "$1" | sed 's/./-/g'
 }
 
+section() {
+    output=$($@)
+    echo "$output" | sed 's/^/ /'
+}
+
 echo "Going to the sandbox"
 cd $HOME/sandbox
 
 heading "Creating hosts"
-  git init $HOME/sandbox/host-X.git --bare --template=
-  git init $HOME/sandbox/host-Z.git --bare --template=
+section "git init $HOME/sandbox/host-X.git --bare --template="
+        "git init $HOME/sandbox/host-Z.git --bare --template="
+
+section "ls -l"
+exit
 
 heading "Creating clients"
   git init $HOME/sandbox/client-A --template=
